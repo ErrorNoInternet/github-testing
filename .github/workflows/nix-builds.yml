@@ -36,7 +36,7 @@ jobs:
       - name: "Maximize disk space"
         uses: easimon/maximize-build-space@v8
         with:
-          root-reserve-mb: 16384
+          root-reserve-mb: 20480
           swap-size-mb: 128
           build-mount-path: /nix
           remove-dotnet: "true"
@@ -92,8 +92,8 @@ jobs:
       - name: "Maximize disk space"
         uses: easimon/maximize-build-space@v8
         with:
-          root-reserve-mb: 8192
-          swap-size-mb: 1024
+          root-reserve-mb: 20480
+          swap-size-mb: 128
           build-mount-path: /nix
           remove-dotnet: "true"
           remove-android: "true"
