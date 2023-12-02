@@ -30,6 +30,8 @@ jobs:
           remove-codeql: "true"
           remove-docker-images: "true"
 
+      - uses: actions/checkout@v3
+
       - name: "Install Nix"
         uses: cachix/install-nix-action@v20
         with:
@@ -46,6 +48,5 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: "Build NixOS configuration"
-        uses: actions/checkout@v3
         run: |
           nix build .#nixosConfigurations.NixBtw.config.system.build.toplevel
