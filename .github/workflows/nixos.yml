@@ -1,4 +1,4 @@
-name: Build NixOS
+name: NixOS
 concurrency: nixos
 
 on:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-configuration:
+    name: "Build NixOS configuration"
     runs-on: ubuntu-latest
     steps:
       - name: "Set up directories"
