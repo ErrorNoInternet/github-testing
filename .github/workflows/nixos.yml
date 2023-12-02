@@ -1,4 +1,4 @@
-name: NixOS
+name: Build NixOS
 concurrency: nixos
 
 on:
@@ -7,7 +7,7 @@ on:
       - flake.lock
 
 jobs:
-  build-boar:
+  build-configuration:
     runs-on: ubuntu-latest
     steps:
       - name: "Set up directories"
@@ -49,7 +49,7 @@ jobs:
       - name: "Install Cachix"
         uses: cachix/cachix-action@v12
         with:
-          name: github_configuration.nix
+          name: errornobinaries
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: "Build NixOS configuration"
