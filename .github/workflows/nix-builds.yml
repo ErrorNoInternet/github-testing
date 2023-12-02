@@ -61,8 +61,8 @@ jobs:
           name: errornobinaries
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: "Build for ${{ matrix.nixos }} (NixOS)"
-        run: nix build .#nixosConfigurations.${{ matrix.nixos }}.config.system.build.toplevel
+      - name: "Build for ${{ matrix.host }} (NixOS)"
+        run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
 
   build-home-manager:
     name: "home-manager"
@@ -117,5 +117,5 @@ jobs:
           name: errornobinaries
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: "Build for ${{ matrix.nixos }} (home-manager)"
-        run: nix build .#homeConfigurations.${{ matrix.nixos }}.activationPackage
+      - name: "Build for ${{ matrix.host }} (home-manager)"
+        run: nix build .#homeConfigurations.${{ matrix.host }}.activationPackage
