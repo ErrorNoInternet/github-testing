@@ -15,10 +15,9 @@ jobs:
       matrix:
         include:
           - nixos: NixBtw
-            home-manager: ryan@NixBtw
-
           - nixos: Rescanix
-            home-manager: ryan@Rescanix
+          - home-manager: ryan@NixBtw
+          - home-manager: ryan@Rescanix
 
     steps:
       - name: "Set up directories"
