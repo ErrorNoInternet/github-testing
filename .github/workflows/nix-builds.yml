@@ -1,5 +1,5 @@
-name: NixOS
-concurrency: nixos
+name: Nix Builds
+concurrency: nix-builds
 
 on:
   push:
