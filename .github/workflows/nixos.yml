@@ -13,9 +13,8 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          nixos: [NixBtw, Pix, Rescanix]
-          home-manager: [ryan@NixBtw, snowflake@Pix, ryan@Rescanix]
+        nixos: [NixBtw, Pix, Rescanix]
+        home-manager: [ryan@NixBtw, snowflake@Pix, ryan@Rescanix]
 
     steps:
       - name: "Set up directories"
