@@ -8,8 +8,15 @@ on:
 
 jobs:
   build-configuration:
-    name: "Build NixOS configuration"
+    name: "Build configurations"
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          nixos: [NixBtw, Pix, Rescanix]
+          home-manager: [ryan@NixBtw, snowflake@Pix, ryan@Rescanix]
+
     steps:
       - name: "Set up directories"
         run: |
@@ -53,6 +60,8 @@ jobs:
           name: errornobinaries
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: "Build NixOS configuration"
-        run: |
-          nix build .#nixosConfigurations.NixBtw.config.system.build.toplevel
+      - name: "Build ${{ matrix.host }} (NixOS)"
+        run: nix build .#nixosConfigurations.${{ matrix.nixos }}.config.system.build.toplevel
+
+      - name: "Build ${{ matrix.host }} (home-manager)"
+        run: nix build .#homeConfigurations.${{ matrix.home-manager }}.activationPackage
