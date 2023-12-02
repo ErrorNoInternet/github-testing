@@ -21,22 +21,23 @@ jobs:
     steps:
       - name: "Set up directories"
         run: |
-          sudo rm -rf $AGENT_TOOLSDIRECTORY
-          sudo rm -rf /usr/local/.ghcup
-          sudo rm -rf /usr/local/share/powershell
-          sudo rm -rf /usr/local/share/chromium
-          sudo rm -rf /usr/local/lib/node_modules
-          sudo rm -rf /usr/local/lib/heroku
-          sudo rm -rf /var/lib/docker/overlay2
+          sudo mkdir /nix
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo rm -rf /home/linuxbrew
           sudo rm -rf /home/runner/.rustup
-          sudo mkdir /nix
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /usr/local/lib/heroku
+          sudo rm -rf /usr/local/lib/node_modules
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf /usr/local/share/chromium
+          sudo rm -rf /usr/local/share/powershell
+          sudo rm -rf /var/lib/docker/overlay2
 
       - name: "Maximize disk space"
         uses: easimon/maximize-build-space@v8
         with:
-          root-reserve-mb: 8192
-          swap-size-mb: 1024
+          root-reserve-mb: 16384
+          swap-size-mb: 128
           build-mount-path: /nix
           remove-dotnet: "true"
           remove-android: "true"
