@@ -13,8 +13,13 @@ jobs:
 
     strategy:
       matrix:
-        nixos: [NixBtw, Pix, Rescanix]
-        home-manager: [ryan@NixBtw, snowflake@Pix, ryan@Rescanix]
+        include:
+          - nixos: NixBtw
+            home-manager: ryan@NixBtw
+          - nixos: Pix
+            home-manager: snowflake@Pix
+          - nixos: Rescanix
+            home-manager: ryan@Rescanix
 
     steps:
       - name: "Set up directories"
@@ -59,8 +64,8 @@ jobs:
           name: errornobinaries
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: "Build ${{ matrix.host }} (NixOS)"
+      - name: "Build for ${{ matrix.nixos }} (NixOS)"
         run: nix build .#nixosConfigurations.${{ matrix.nixos }}.config.system.build.toplevel
 
-      - name: "Build ${{ matrix.host }} (home-manager)"
+      - name: "Build for ${{ matrix.home-manager }} (home-manager)"
         run: nix build .#homeConfigurations.${{ matrix.home-manager }}.activationPackage
