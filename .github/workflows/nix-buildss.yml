@@ -1,5 +1,5 @@
-name: Nix Builds
-concurrency: nix-builds
+name: Nix Buildss
+concurrency: nix-buildss
 
 on:
   push:
