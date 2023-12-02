@@ -17,9 +17,6 @@ jobs:
           - nixos: NixBtw
             home-manager: ryan@NixBtw
 
-          - nixos: Pix
-            home-manager: snowflake@Pix
-
           - nixos: Rescanix
             home-manager: ryan@Rescanix
 
