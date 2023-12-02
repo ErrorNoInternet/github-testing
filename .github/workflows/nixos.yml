@@ -1,6 +1,11 @@
 name: NixOS
 concurrency: nixos
 
+on:
+  push:
+    paths:
+      - flake.lock
+
 jobs:
   build-boar:
     runs-on: ubuntu-latest
