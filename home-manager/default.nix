@@ -36,8 +36,8 @@ in {
         defaultModule
         ./hosts/Rescanix.nix
         ./programs/spicetify.nix
-        ./shared/caches/hyprland.nix
-        ./shared/caches/nix-gaming.nix
+        ../shared/caches/hyprland.nix
+        ../shared/caches/nix-gaming.nix
       ];
     };
     "snowflake@Pix" = homeManagerConfiguration {
