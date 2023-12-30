@@ -1,0 +1,26 @@
+name: Test
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    name: A
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Install Nix
+        uses: cachix/install-nix-action@v20
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            auto-optimise-store = true
+            log-lines = 500
+
+      - uses: actions/checkout@v4
+
+      - uses: lhotari/action-upterm@v1
+
+      - name: Sleep for 6 hours
+        run: sleep 6h
