@@ -9,16 +9,61 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Install Nix
-        uses: cachix/install-nix-action@v20
+      - name: Maximize disk space
+        uses: easimon/maximize-build-space@v8
         with:
-          install_url: https://nixos.org/nix/install
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            auto-optimise-store = true
+          swap-size-mb: 16384
+          build-mount-path: /nix
+          overprovision-lvm: "true"
+          remove-dotnet: "true"
+          remove-android: "true"
+          remove-haskell: "true"
+          remove-codeql: "true"
+          remove-docker-images: "true"
+
+      - name: Set up directories
+        run: |
+          sudo chown root:root /nix
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo rm -rf /home/linuxbrew
+          sudo rm -rf /home/runner/.rustup
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /usr/local/lib/heroku
+          sudo rm -rf /usr/local/lib/node_modules
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf /usr/local/share/chromium
+          sudo rm -rf /usr/local/share/powershell
+          sudo rm -rf /var/lib/docker/overlay2
+
+      - name: Install system dependencies
+        run: |
+          sudo apt update -y
+          sudo apt install -y cpulimit qemu-user-static
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v9
+        with:
+          extra-conf: |
             log-lines = 500
 
-      - uses: actions/checkout@v4
+      - name: Set up Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v2
+
+      - name: Set up Attic
+        uses: ErrorNoInternet/attic-action@v0
+        with:
+          endpoint: https://errornointernet.dynv6.net:7455
+          cache: ErrorNoBinaries
+
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v12
+        with:
+          name: errornobinaries
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: lhotari/action-upterm@v1
 
       - uses: lhotari/action-upterm@v1
 
