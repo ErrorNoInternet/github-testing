@@ -9,21 +9,17 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Maximize disk space
-        uses: easimon/maximize-build-space@v8
+      - name: Maximize disk space (part 1)
+        uses: AdityaGarg8/remove-unwanted-software@v2
         with:
-          swap-size-mb: 16384
-          build-mount-path: /nix
-          overprovision-lvm: "true"
           remove-dotnet: "true"
           remove-android: "true"
           remove-haskell: "true"
           remove-codeql: "true"
           remove-docker-images: "true"
 
-      - name: Set up directories
+      - name: Maximize disk space (part 2)
         run: |
-          sudo chown root:root /nix
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo rm -rf /home/linuxbrew
           sudo rm -rf /home/runner/.rustup
