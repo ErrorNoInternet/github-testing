@@ -1,12 +1,18 @@
 name: Build
-on:
-  pull_request:
-  workflow_dispatch:
+on: [push]
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-22.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+          - system: aarch64-linux
+          - system: armv7l-linux
 
     steps:
       - name: Maximize disk space (part 1)
@@ -56,5 +62,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build default package
-        run: nix build -L .
+      - name: Build package
+        run: nix build --system ${{ matrix.system }} -L .#package
