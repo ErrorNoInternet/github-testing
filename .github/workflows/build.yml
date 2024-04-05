@@ -1,11 +1,11 @@
-name: Test
+name: Build
 on:
   pull_request:
   workflow_dispatch:
 
 jobs:
-  checks:
-    name: A
+  build:
+    name: Build
     runs-on: ubuntu-22.04
 
     steps:
@@ -47,9 +47,6 @@ jobs:
 
       - name: Set up Attic
         uses: ErrorNoInternet/attic-action@v0
-        with:
-          endpoint: https://errornointernet.dynv6.net:7455
-          cache: ErrorNoBinaries
 
       - name: Set up Cachix
         uses: cachix/cachix-action@v12
@@ -59,8 +56,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: lhotari/action-upterm@v1
-
-      - uses: lhotari/action-upterm@v1
-
-      - uses: lhotari/action-upterm@v1
+      - name: Build default package
+        run: nix build -L .
