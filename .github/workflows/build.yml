@@ -10,9 +10,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - system: x86_64-linux
-          - system: aarch64-linux
-          - system: armv7l-linux
+          system: [x86_64-linux, aarch64-linuxm armv7l-linux]
+          package: [yazi, ranger, lf]
 
     steps:
       - name: Maximize disk space (part 1)
@@ -69,12 +68,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build package
-        run: nix build --system ${{ matrix.system }} -L nixpkgs#yazi
-
-      - name: Build package
-        if: always()
-        run: nix build --system ${{ matrix.system }} -L nixpkgs#ranger
-
-      - name: Build package
-        if: always()
-        run: nix build --system ${{ matrix.system }} -L nixpkgs#lf
+        run: nix build -L --system ${{ matrix.system }} nixpkgs#${{ matrix.package }}
