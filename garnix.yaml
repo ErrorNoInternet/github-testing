@@ -1,4 +1,4 @@
 builds:
   exclude: []
   include:
-    - "*.armv7l-linux.*"
+    - "packages.armv7l-linux.hsize"
