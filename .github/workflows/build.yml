@@ -9,13 +9,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          system: [x86_64-linux, aarch64-linuxm armv7l-linux]
-          package: [
-            "github:ErrorNoInternet/hsize",
-            "github:ErrorNoInternet/configuration.nix#hwatch",
-            "github:ErrorNoInternet/configuration.nix#passgen"
-          ]
+        system: [x86_64-linux, aarch64-linux, armv7l-linux]
+        package: [
+          "github:ErrorNoInternet/hsize",
+          "github:ErrorNoInternet/configuration.nix#hwatch",
+          "github:ErrorNoInternet/configuration.nix#passgen"
+        ]
 
     steps:
       - name: Maximize disk space (part 1)
