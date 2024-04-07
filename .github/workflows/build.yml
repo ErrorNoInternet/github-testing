@@ -70,3 +70,11 @@ jobs:
 
       - name: Build package
         run: nix build --system ${{ matrix.system }} -L nixpkgs#yazi
+
+      - name: Build package
+        if: always()
+        run: nix build --system ${{ matrix.system }} -L nixpkgs#ranger
+
+      - name: Build package
+        if: always()
+        run: nix build --system ${{ matrix.system }} -L nixpkgs#lf
