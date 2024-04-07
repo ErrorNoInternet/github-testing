@@ -1,0 +1,4 @@
+builds:
+  exclude: []
+  include:
+    - "*.armv7l-linux.*"
