@@ -11,9 +11,9 @@ jobs:
       matrix:
         system: [x86_64-linux, aarch64-linux, armv7l-linux]
         package: [
-          "github:ErrorNoInternet/hsize",
-          "github:ErrorNoInternet/configuration.nix#hwatch",
-          "github:ErrorNoInternet/configuration.nix#passgen"
+          lf
+          yazi
+          ranger
         ]
 
     steps:
