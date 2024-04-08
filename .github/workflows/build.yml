@@ -9,10 +9,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        system: [x86_64-linux, aarch64-linux, armv7l-linux]
+        system: [
+          x86_64-linux,
+          aarch64-linux,
+          armv7l-linux
+        ]
         package: [
-          lf
-          yazi
+          lf,
+          yazi,
           ranger
         ]
 
