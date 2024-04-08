@@ -15,12 +15,8 @@ jobs:
           armv7l-linux
         ]
         package: [
-          nixpkgs#lf,
-          nixpkgs#pkgsMusl.lf,
-          nixpkgs#pkgsMusl.ranger
-          nixpkgs#pkgsMusl.yazi,
-          nixpkgs#ranger,
-          nixpkgs#yazi,
+          "github:ErrorNoInternet/configuration.nix#hwatch",
+          nixpkgs#hwatch
         ]
 
     steps:
