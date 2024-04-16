@@ -15,8 +15,7 @@ jobs:
           armv7l-linux
         ]
         package: [
-          "github:ErrorNoInternet/configuration.nix#hwatch",
-          nixpkgs#hwatch
+          "github:ErrorNoInternet/overmask"
         ]
 
     steps:
