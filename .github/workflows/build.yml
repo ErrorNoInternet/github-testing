@@ -15,7 +15,7 @@ jobs:
           armv7l-linux
         ]
         package: [
-          "github:ErrorNoInternet/overmask"
+          "github:YaLTeR/niri/fe00b05fdf6e43fdb9637e4d40ed78de"
         ]
 
     steps:
