@@ -15,7 +15,7 @@ jobs:
           armv7l-linux
         ]
         package: [
-          "github:YaLTeR/niri/fe00b05fdf6e43fdb9637e4d40ed78de"
+          "github:YaLTeR/niri/c40d4f3268318ac295f21bfce38b9809c5e48f0d"
         ]
 
     steps:
