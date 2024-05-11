@@ -1,3 +1,0 @@
-a.blob filter=lfs diff=lfs merge=lfs -text
-aaaaaa/b.blob filter=lfs diff=lfs merge=lfs -text
-aaaaaa/c.blob filter=lfs diff=lfs merge=lfs -text
