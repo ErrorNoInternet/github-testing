@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "extra-experimental-features = ca-derivations" |
             sudo tee -a /etc/nix/nix.conf
-          ps aux
+          sudo -E nix-daemon -k
 
       - name: Build package
         run: nix build -L --system ${{ matrix.system }} ${{ matrix.package }}
