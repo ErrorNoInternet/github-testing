@@ -48,7 +48,6 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@v9
         with:
           extra-conf: |
-            experimental-features = nix-command flakes ca-derivations
             log-lines = 500
             substituters = https://cache.garnix.io https://cache.armv7l.xyz
             trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.armv7l.xyz-1:kBY/eGnBAYiqYfg0fy0inWhshUo+pGFM3Pj7kIkmlBk= 
@@ -56,12 +55,12 @@ jobs:
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
 
-      # - name: Set up Attic
-      #   uses: ErrorNoInternet/attic-action@v0
-      #   with:
-      #     endpoint: ${{ secrets.ATTIC_ENDPOINT }}
-      #     cache: ${{ secrets.ATTIC_CACHE }}
-      #     token: ${{ secrets.ATTIC_TOKEN }}
+      - name: Set up Attic
+        uses: ErrorNoInternet/attic-action@v0
+        with:
+          endpoint: ${{ secrets.ATTIC_ENDPOINT }}
+          cache: ${{ secrets.ATTIC_CACHE }}
+          token: ${{ secrets.ATTIC_TOKEN }}
 
       - name: Set up Cachix
         uses: cachix/cachix-action@v12
@@ -70,6 +69,12 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: uhh
+        run: |
+          cat ~/.config/nix/nix.conf
+          echo a
+          cat /etc/nix/nix.conf
 
       - name: Build package
         run: nix build -L --system ${{ matrix.system }} ${{ matrix.package }}
