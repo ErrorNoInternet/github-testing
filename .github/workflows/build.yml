@@ -70,11 +70,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: uhh
+      - name: ca-derivations
         run: |
-          cat ~/.config/nix/nix.conf
-          echo a
-          cat /etc/nix/nix.conf
+          echo "extra-experimental-features = ca-derivations" |
+            sudo tee -a /etc/nix/nix.conf
 
       - name: Build package
         run: nix build -L --system ${{ matrix.system }} ${{ matrix.package }}
