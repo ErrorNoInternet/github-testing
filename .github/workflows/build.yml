@@ -11,11 +11,9 @@ jobs:
       matrix:
         system: [
           x86_64-linux,
-          aarch64-linux,
-          armv7l-linux
         ]
         package: [
-          "github:YaLTeR/niri/c40d4f3268318ac295f21bfce38b9809c5e48f0d"
+          "github:ErrorNoInternet/configuration.nix#nixosConfigurations.msix.config.system.build.toplevel"
         ]
 
     steps:
@@ -50,6 +48,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@v9
         with:
           extra-conf: |
+            experimental-features = nix-command flakes ca-derivations
             log-lines = 500
             substituters = https://cache.garnix.io https://cache.armv7l.xyz
             trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.armv7l.xyz-1:kBY/eGnBAYiqYfg0fy0inWhshUo+pGFM3Pj7kIkmlBk= 
@@ -57,12 +56,12 @@ jobs:
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
 
-      - name: Set up Attic
-        uses: ErrorNoInternet/attic-action@v0
-        with:
-          endpoint: ${{ secrets.ATTIC_ENDPOINT }}
-          cache: ${{ secrets.ATTIC_CACHE }}
-          token: ${{ secrets.ATTIC_TOKEN }}
+      # - name: Set up Attic
+      #   uses: ErrorNoInternet/attic-action@v0
+      #   with:
+      #     endpoint: ${{ secrets.ATTIC_ENDPOINT }}
+      #     cache: ${{ secrets.ATTIC_CACHE }}
+      #     token: ${{ secrets.ATTIC_TOKEN }}
 
       - name: Set up Cachix
         uses: cachix/cachix-action@v12
